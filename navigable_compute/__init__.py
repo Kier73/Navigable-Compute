@@ -74,3 +74,16 @@ from .reflective_verify import reference_run, verify_reflection
 from .reflective_wire import encode_reflection, decode_reflection
 __all__ += ['reflect','compile_reflector','compile_task_program','host_run',
             'reference_run','verify_reflection','encode_reflection','decode_reflection']
+
+# NCR-002: construct and independently verify a reflective evaluator from a
+# finite semantic contract, with Ground-scoped architecture coordinates.
+from .reflective_architecture import (ReflectiveArchitecture,
+    construct_reflective_architecture,architecture_run,encode_source)
+from .reflective_architecture_verify import (verify_architecture,
+    verify_architecture_execution)
+from .reflective_architecture_wire import (encode_architecture,decode_architecture,
+    encode_execution,decode_execution)
+__all__ += ['ReflectiveArchitecture','construct_reflective_architecture',
+            'architecture_run','encode_source','verify_architecture',
+            'verify_architecture_execution','encode_architecture',
+            'decode_architecture','encode_execution','decode_execution']
