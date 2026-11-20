@@ -1,18 +1,10 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.5 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.4 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
-
-## v0.5 — Construct a coupled system, not a collection of incompatible components
-
-**[NCP-002: Coupled possibility Grounds](docs/NCP-002.md)** extends the description-first constructor to systems whose components share actuators and joint safety conditions. Two machines may each have a valid controller while their naive simultaneous operation is impossible under the declared resource capacity. NCP-002 constructs the **joint** mathematical relation, finds a robust guaranteed controller against every declared successor, and navigates to an alternative joint machine by exact mixed-radix coordinate. It refuses impossible designs with an independently verified adversarial-trap certificate.
-
-The falsifiable example has two independently specified three-state machines. Each finishes in **two** logical steps alone, but with only one shared advance actuator, a jointly realizable design needs **four**. Neither the shared actuator's physical existence nor an E-CPU capability is inferred from the description. This explicitly identifies the integration requirement for **E-CPU IPS-008 receiver-controlled effect resources**, **IFS IWI partial-observation research**, and VGI's independent Ground qualification.
-
-Run `python coupled_demo.py` or the complete conformance suite. Eight OS/Python CI combinations cover the new construction and the existing NCP-001 lane. NCP-001's large factored state-space result is retained unchanged, under its explicit independence assumption.
 
 ## v0.4 — Construct the possibility space, then navigate to a processor
 
@@ -124,3 +116,33 @@ See [the architecture note](docs/architecture.md) and [reproduction record](docs
 ## Honest speed comparison
 
 A CPU still requires physical substrate to evaluate the Ground. The claim is **fewer necessary operations than direct emulation for certain programs**, not that virtual computation transcends hardware, all tasks can be fast-forwarded, or RH implies P=NP. For an arbitrary program, `add_const` demonstrates an immediate family-admission refusal; for arbitrary nonlinear programs, the representation may grow as expensive as iteration.
+
+## NCI-001 — Construct transformation spaces directly from invariants (v0.5)
+
+**New direction: the transition relation itself is an output.** NCP-001 previously
+required a declaration of possible action effects. NCI-001 requires only a
+finite *mathematical geometry and its invariants*: safe/goal states, a spatial
+metric and locality bound, a symmetry, preserved observable labels and allowed
+initial states. It derives the full space of **rank-optimal, symmetry-equivariant
+partial processor laws** consistent with those invariants, proves goal
+convergence, and navigates directly to a selected law by integer coordinate.
+
+A 7×7 geometric fixture has **512** admissible shortest-progress laws, without
+providing a program, effect clauses or a ranking. An independent 32-factor
+construction represents **49^32** possible global states and **2^288** such
+processor laws while examining only **1,568** local states (declared
+independence is essential). A rotation-symmetry obstruction demonstrates that
+nearby geometric states need not admit a symmetry-compatible transition;
+independently checkable closed-trap certificates refuse the impossible brief.
+
+The implementation is finite and exact, and is not a claim of universal
+optimization, externally witnessed behavior, or physical host availability.
+
+```bash
+python -m unittest discover -s tests -v
+python invariant_demo.py
+```
+
+Read [the construction and proof contract](docs/NCI-001.md). This lane has
+its own independent semantic checker and strict mathematical-receipt wire
+profile, and leaves authority and real-world effect execution with E-CPU/VGI.
