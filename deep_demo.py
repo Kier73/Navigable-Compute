@@ -24,7 +24,21 @@ def main():
     full=partial+(ObservationAt(far+1,0,255,(source_init+delta*(far+1))%256),)
     p=realize(Intention(1,partial))
     f=realize(Intention(1,full))
+    # A time-local intention can collapse a currently distinguishable byte
+    # after an overwrite. This Ground cannot be advanced to arbitrary times.
+    overwritten=Program(1,(I('set',0,0),))
+    scoped_q=(ObservationAt(10**66+1,0,255,0),)
+    task=realize(Intention(1,scoped_q,overwritten,observation_scope='task-only'))
+    from navigable_compute.quotient import build_component_quotient
+    future_classes=build_component_quotient(overwritten,(0,),((0,255),)).classes
     result={
+        'task_scope':{'coordinate_decimal':str(scoped_q[0].cycle),
+                      'all_future_classes':future_classes,
+                      'task_only_classes':task.certificate.certificates[0].classes,
+                      'compatible_initial_states':str(task.certificate.candidate_count),
+                      'cannot_advance_quotient_to_new_times':True,
+                      'independent_checker':task.independent_checker,
+                      'receipt_sha256':task.certificate.witness_digest},
         'schema':'navigable-compute.deep-experiments.v0.2',
         'machine':{'global_bits':8*program.size,'global_state_count_decimal':str(1<<(8*program.size)),
                    'coordinate_decimal':str(epoch),'observed_components':len(c.certificates),
