@@ -84,3 +84,20 @@ state-coupled constraints with symbolic relation construction and record when
 symbolic structure grows more costly than execution. **NCI-004:** bind a selected
 law to an authorized E-CPU realizer without confusing mathematical existence
 with physical or operational availability.
+
+## NCR-002 — Self-interpretation as a construction constraint (implemented)
+
+[NCR-002](NCR-002.md) derives a four-primitive reflective basis from seven
+required semantic operations in a finite recipe grammar, constructs a task-
+Ground-specific program encoding, generates the evaluator AST from syntax
+semantics, and tests actual double-level self-interpretation with a separate
+continuation-stack machine. An exact factoradic index selects among 120
+representational encoding gauges; it does not confer 120 semantic CPUs.
+
+**Next:** search for language/representation grammars rather than fixed
+macro recipes; qualify the generated evaluator through inductive operational
+semantics in a formal proof kernel; couple code generation to authenticated
+E-CPU host capabilities. Count all construction, validation, source transport,
+physical interpretation and result rendering costs. Unknown or intractable
+candidate grammars should produce a refusal or conditional hypothesis, not
+assertions of substrate-free computation or general speedups.
