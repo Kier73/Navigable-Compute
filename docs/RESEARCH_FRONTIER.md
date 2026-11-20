@@ -10,7 +10,27 @@ This is an ambition about **constructive mathematical representation**. It does 
 
 The user-supplied intuition, *“Reality is in-formation, and the stories we make; matter,”* is useful as motivation to ask how descriptions become externally checkable realizations. It is not a substitute for mathematical or physical evidence.
 
-## Four working layers
+## New: description → possibility Ground → qualified processor instance
+
+[NCP-001](NCP-001.md) introduces a separate contract-first construction lane. A
+brief declares allowed transition effects, initial uncertainty, safety and
+terminal goals; the compiler builds a finite relational Ground, proves the
+existence of a guaranteed convergent control law, and indexes *all* locally
+rank-optimal qualified processor laws through mixed-radix coordinates. It
+never assumes the program exists beforehand. Nonrealizable briefs obtain a
+closed adversarial-trap witness. A separate checker verifies source clauses,
+Bellman ranks, source-bound selected instance identity, and refusals.
+
+A 32-factor synthetic example addresses a 2^128-state Cartesian space by
+checking 512 local states and navigating to a mathematically realized
+controller at instance coordinate 10^30+17. This relies on **stipulated
+factor independence**; it does not entail a cheap solution for coupled
+machines or confirm externally realized actuator effects. Further work
+should synthesize the possibility geometry itself from typed invariants,
+link factors by certified interfaces, and bind constructed operations to
+independently admitted E-CPU observer-host capabilities.
+
+## Four earlier working layers
 
 | Lane | Input | Constructed output | Witness | Expenditure |
 |---|---|---|---|---|
