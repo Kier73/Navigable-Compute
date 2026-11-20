@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "navigable-compute"
-version = "0.4.0"
+version = "0.5.0"
 description = "Description-driven construction of verifiable navigable computational Grounds"
 requires-python = ">=3.10"
 license = {text = "MIT"}
