@@ -19,3 +19,4 @@ jobs:
       - run: python possibility_demo.py
       - run: python invariant_demo.py
       - run: python self_space_demo.py
+      - run: python reflective_demo.py
