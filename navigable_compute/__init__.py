@@ -67,3 +67,10 @@ from .self_verify import verify_endogenous_processor
 from .self_wire import encode_processor, decode_processor
 __all__ += ['EndogenousProcessor','AlgebraBudgetExceeded','build_endogenous_processor',
             'verify_endogenous_processor','encode_processor','decode_processor']
+
+# NCR-001: bounded same-language reflection with independent operational audit.
+from .reflective_ground import reflect, compile_reflector, compile_task_program, host_run
+from .reflective_verify import reference_run, verify_reflection
+from .reflective_wire import encode_reflection, decode_reflection
+__all__ += ['reflect','compile_reflector','compile_task_program','host_run',
+            'reference_run','verify_reflection','encode_reflection','decode_reflection']
