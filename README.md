@@ -1,11 +1,46 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.9 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 1.0 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
 
+
+## v1.0 — Construct the observer language before the source operator algebra (NCR-004)
+
+**The observer's requirements can determine the entire executable language
+*before* the processor enumerates all of its possible programs.** NCR-004
+starts from finite source generators (optionally constructed directly from
+NCI-001 invariants) and admitted output labels. It derives a reachable
+Moore state quotient, then closes only the generator transformations *on
+that quotient*. An independent checker uses pairwise distinguishability
+and priority-queue normal forms rather than the producer's construction.
+
+In the discriminating synthetic example, **80,640** source transformations
+collapse into **two** task-required operations without enumerating the original
+monoid. The independent exhaustive oracle confirms 80,640 source operations
+separately. NCI-001 geometric tasks yield 3, 5 and 7 goal-observer operations,
+matching the earlier NCR-003 full-monoid reference; a restricted observer
+still requires the exact six-class two-sided contextual quotient.
+
+An observer that acquires more informative, separately admitted evidence can
+refine its language **2 -> 4 -> 16** under unchanged finite transition laws.
+Source-anchored revision certificates prove a one-way homomorphism to the
+previous language and exhibit irreversible distinctions. **Changed source
+transition laws must begin another Ground epoch**, not silently reinterpret
+old observations. This mathematical continuity mechanism is intended to
+complement [VL-I TIME-001/TIME-002](https://github.com/Kier73/VL-I), but the
+present code is not a live VL-I agent, authenticated E-CPU receiver, physical
+observation, or universal interpreter.
+
+```bash
+python -m unittest discover -s tests -v
+python preclosure_demo.py
+```
+
+See [NCR-004](docs/NCR-004.md) for the exact proof, independent verifier,
+counterexample tests, canonical wire receipts and VL-I/E-CPU bridge contract.
 
 ## v0.8 — Construct an interpreter as a semantic invariant (NCR-002)
 
