@@ -1,9 +1,18 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.2 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.3 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
+
+
+## v0.3 — The temporal coordinate changes what machine is necessary
+
+**[NCQ-002: Task-scoped temporal Ground construction](docs/NCQ-002.md)** adds a stricter form of intention-relative computation. NCQ-001 builds the smallest machine that preserves **every future observation** in an observer contract. NCQ-002 builds the smallest exact representation preserving **only the explicitly requested coordinate/output pairs**. A machine that overwrites one byte every cycle needs 256 classes to preserve the full time-zero byte but **one task class** to answer only its post-overwrite byte; observing the high bit of an incrementing byte at one distant time needs only 2 task classes, versus 256 classes to preserve its entire future observation sequence.
+
+The task quotient is **not transition-stable** and cannot be used to answer unrequested times. Receipts carry the full task scope; an independent checker uses finite concrete transitions and cycle decomposition. The portable wire format distinguishes `task-scoped-quotient` from `finite-observer-quotient` and rejects reinterpretation across these scopes. Call `realize(Intention(..., observation_scope='task-only'))` to select it; the default remains `all-future`.
+
+**43 local regression tests** cover the v0.1–v0.3 research lanes. Run `python -m unittest discover -s tests -v` and `python deep_demo.py`.
 
 ## v0.2 — Construct the processor from the observation
 
