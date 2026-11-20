@@ -92,12 +92,14 @@ class StepBudget:
             raise ValueError('bounded interpretation fuel exhausted')
 
 
-def host_run(program, entry, argv, table, *, fuel=5000000):
+def host_run(program, entry, argv, table, *, fuel=5000000, seed_primitives=None):
     """Reference host semantics, deliberately lacking an 'eval' primitive."""
     if type(entry) is not str or type(argv) is not tuple or type(table) is not tuple:
         raise ValueError('invalid reflective input types')
     if type(fuel) is not int or not 1 <= fuel <= 20000000:
         raise ValueError('invalid reflection fuel')
+    if seed_primitives is not None and (type(seed_primitives) is not tuple or any(x not in PRIMITIVES for x in seed_primitives)):
+        raise ValueError('invalid physical primitive seed')
     defs = _program_map(program)
     budget = StepBudget(fuel)
     def evaluate(node, frame):
@@ -117,6 +119,8 @@ def host_run(program, entry, argv, table, *, fuel=5000000):
         if tag in ('prim', 'call') and len(node) == 3 and type(node[1]) is str and type(node[2]) is tuple:
             values = tuple(evaluate(v, frame) for v in node[2])
             if tag == 'prim':
+                if seed_primitives is not None and node[1] not in seed_primitives:
+                    raise ValueError('primitive absent from constructed host seed')
                 return _primitive(node[1], values, table)
             if node[1] not in defs:
                 raise ValueError('unknown function')
