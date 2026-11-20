@@ -161,7 +161,10 @@ class CoupledGround:
             raise ValueError('cannot navigate an unverified coupled controller')
         if type(coordinate) is not int or coordinate<0 or coordinate.bit_length()>4096:
             raise ValueError('invalid logical time coordinate')
-        graph=_graph(self.source)
+        graph=_graph(
+            self.source, max_states=max(512,len(self.states)),
+            max_actions=max(256,prod(len(b.actions) for b in self.source.factors)),
+        )
         options,successors,safe,goals,initial=graph
         present=set(initial)
         for _ in range(min(coordinate,self.worst_steps)):
