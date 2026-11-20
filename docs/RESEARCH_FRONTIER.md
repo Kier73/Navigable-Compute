@@ -64,3 +64,23 @@ The coarsest observer equivalence in a finite deterministic system exists, but f
 A successful acceleration claim needs an accounting that includes law/representation discovery, Ground admission, independent verification, stored advice or cached state, target navigation, communication, materialization and accuracy. For arbitrarily long fixed-input outputs, even writing the requested output may dominate. A law chosen retrospectively from the answer is not a computational acceleration unless its construction cost and source of information are counted.
 
 **Success would be a growing, evidence-backed portfolio of task-relative mathematical processors that can be constructed, transported, independently checked, and used across observer-hosts.** That is an ambitious, falsifiable research objective independent of whether any single conjecture supplies a universal technique.
+
+## NCI-001 (implemented) — invariants generate the transition space
+
+[NCI-001](NCI-001.md) changes the constructor's **input contract**, rather than
+merely expanding its opcode set. It receives finite geometry and requirements:
+metric locality, symmetry, preserved observable labels, safe/goal membership,
+and admitted initial states. It generates legal one-step transformations from
+these constraints, derives goal-directed ranks from the resulting quotient
+relation, and computes a factored coordinate space of all shortest-progress
+symmetry-equivariant processors. Its mathematical receipts include an
+independently checked obstruction when the invariants make realization
+impossible. Nothing in NCI-001 imports or proves RH.
+
+**Research question NCI-002:** can the mathematical Ground and symmetry itself
+be discovered from an intention and measured distinctions, with independent
+validation of its geometric and semantic authority? **NCI-003:** admit
+state-coupled constraints with symbolic relation construction and record when
+symbolic structure grows more costly than execution. **NCI-004:** bind a selected
+law to an authorized E-CPU realizer without confusing mathematical existence
+with physical or operational availability.
