@@ -1,10 +1,23 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.3 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.4 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
+
+## v0.4 — Construct the possibility space, then navigate to a processor
+
+**[NCP-001 / NCB-001: Intention-first possibility construction](docs/NCP-001.md)** begins from a **declarative requirement** rather than a supplied program or observed trajectory. A brief describes allowed effects, unsafe outcomes, intended goal states and admissible initial uncertainty. The compiler constructs a mathematical possibility relation and synthesizes a safe state-observed processor law, robust to **all** declared adversarial successor choices. Its rank certificate proves a finite worst-case convergence bound. A separate checker audits the source-to-relation translation, Bellman minimality, and a tamper-resistant-by-recomputation mathematical witness. An impossible brief can produce an independently verifiable adversarial trap rather than a fabricated realization.
+
+**New capability: navigation among architectures.** The constructor retains a factored space of all rank-optimal controller tables. An integer coordinate selects an exact alternative processor without enumerating candidate processors. In the deterministic test, 32 independent 16-state components represent a global **2^128-state** universe, but construction examines **512 local states**, converges from every admitted initial state within **12** logical steps, and gives a unique terminal observation at time `10^100+173`. A second valid processor is constructed at instance coordinate `10^30+17`. This result relies critically on the stated independence, complete transition possibilities, full local observability and terminal goal assumption; it is not a universal computation shortcut or proof of available physical actuators.
+
+```bash
+python -m unittest discover -s tests -v
+python possibility_demo.py
+```
+
+**52 local regression tests** (v0.1–v0.4), including independent enumeration of all 729 deterministic three-state/two-action tables. See [NCP-001 detailed obligations](docs/NCP-001.md) for costs, independent verification, failure witnesses, and connections to E-CPU and IFS reactive planning research. This is a constructive mathematical processor, **not yet a bound E-CPU observer-host**.
 
 ## v0.3 — The temporal coordinate changes what machine is necessary
 
