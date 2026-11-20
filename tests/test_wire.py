@@ -5,7 +5,9 @@ from navigable_compute.machine import Instruction,Program
 from navigable_compute.observability import ObservationAt
 from navigable_compute.quotient import synthesize_quotient_trace
 from navigable_compute.law_synthesis import synthesize_additive_law
-from navigable_compute.wire import encode_quotient,decode_quotient,encode_law,decode_law
+from navigable_compute.wire import (encode_quotient,decode_quotient,encode_law,decode_law,
+    encode_task,decode_task)
+from navigable_compute.task_quotient import synthesize_task_trace
 
 class WireTests(unittest.TestCase):
     def test_quotient_cross_process_wire_contract(self):
@@ -26,6 +28,20 @@ class WireTests(unittest.TestCase):
         changed=encoded.replace(b'"quotient_products":',b'"quotient_products":99999,"extra":')
         with self.assertRaises(ValueError):
             decode_quotient(changed,p)
+
+    def test_task_wire_cannot_masquerade_as_future_stable(self):
+        p=Program(1,(Instruction('set',0,0),))
+        q=(ObservationAt(10**90+1,0,255,0),)
+        r=synthesize_task_trace(p,q)
+        packet=encode_task(p,q,r)
+        qq,ff,rr=decode_task(packet,p)
+        self.assertEqual((qq,ff,rr),(q,(),r))
+        with self.assertRaises(ValueError):
+            decode_quotient(packet,p)
+        with self.assertRaises(ValueError):
+            decode_task(packet,Program(1,(Instruction('set',0,1),)))
+        with self.assertRaises(ValueError):
+            decode_task(packet+b' ',p)
 
     def test_law_wire_contract(self):
         q=(ObservationAt(10**40+5,0,255,41),ObservationAt(10**40+6,0,255,48))
