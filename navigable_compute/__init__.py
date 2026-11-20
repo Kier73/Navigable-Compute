@@ -105,3 +105,18 @@ from .language_morphism import (LanguageProjection, NonRefinementWitness,
 from .language_morphism_verify import verify_language_relation
 __all__ += ['LanguageProjection','NonRefinementWitness',
             'assess_language_projection','verify_language_relation']
+
+# NCR-004: derive the exact observer language before source monoid closure;
+# preserve semantics through monotone observation revisions.
+from .preclosure_language import (GeneratorObservation, PreclosureLanguage,
+    LanguageRevision, QuotientExplosion, generators_from_invariants,
+    construct_preclosure_language, derive_language_revision)
+from .preclosure_verify import verify_preclosure_language, verify_language_revision
+from .preclosure_wire import (encode_preclosure, decode_preclosure,
+    encode_revision, decode_revision)
+__all__ += ['GeneratorObservation','PreclosureLanguage','LanguageRevision',
+            'QuotientExplosion','generators_from_invariants',
+            'construct_preclosure_language','derive_language_revision',
+            'verify_preclosure_language','verify_language_revision',
+            'encode_preclosure','decode_preclosure','encode_revision',
+            'decode_revision']
