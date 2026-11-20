@@ -87,3 +87,21 @@ __all__ += ['ReflectiveArchitecture','construct_reflective_architecture',
             'architecture_run','encode_source','verify_architecture',
             'verify_architecture_execution','encode_architecture',
             'decode_architecture','encode_execution','decode_execution']
+
+
+# NCR-003: construct an exact observer-generated instruction language by
+# two-sided contextual equivalence of a task-generated semantic monoid.
+from .semantic_language import (ObservationContract, SemanticLanguage,
+                                derive_semantic_language)
+from .semantic_language_verify import verify_semantic_language
+from .semantic_language_wire import (encode_semantic_language,
+                                     decode_semantic_language)
+__all__ += ['ObservationContract','SemanticLanguage','derive_semantic_language',
+            'verify_semantic_language','encode_semantic_language',
+            'decode_semantic_language']
+
+from .language_morphism import (LanguageProjection, NonRefinementWitness,
+                                assess_language_projection)
+from .language_morphism_verify import verify_language_relation
+__all__ += ['LanguageProjection','NonRefinementWitness',
+            'assess_language_projection','verify_language_relation']
