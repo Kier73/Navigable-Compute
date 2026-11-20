@@ -1,10 +1,18 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.4 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.5 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
+
+## v0.5 — Construct a coupled system, not a collection of incompatible components
+
+**[NCP-002: Coupled possibility Grounds](docs/NCP-002.md)** extends the description-first constructor to systems whose components share actuators and joint safety conditions. Two machines may each have a valid controller while their naive simultaneous operation is impossible under the declared resource capacity. NCP-002 constructs the **joint** mathematical relation, finds a robust guaranteed controller against every declared successor, and navigates to an alternative joint machine by exact mixed-radix coordinate. It refuses impossible designs with an independently verified adversarial-trap certificate.
+
+The falsifiable example has two independently specified three-state machines. Each finishes in **two** logical steps alone, but with only one shared advance actuator, a jointly realizable design needs **four**. Neither the shared actuator's physical existence nor an E-CPU capability is inferred from the description. This explicitly identifies the integration requirement for **E-CPU IPS-008 receiver-controlled effect resources**, **IFS IWI partial-observation research**, and VGI's independent Ground qualification.
+
+Run `python coupled_demo.py` or the complete conformance suite. Eight OS/Python CI combinations cover the new construction and the existing NCP-001 lane. NCP-001's large factored state-space result is retained unchanged, under its explicit independence assumption.
 
 ## v0.4 — Construct the possibility space, then navigate to a processor
 
