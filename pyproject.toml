@@ -4,11 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "navigable-compute"
-version = "0.1.0"
-description = "Intent-first exact synthetic byte-machine navigation"
+version = "0.4.0"
+description = "Description-driven construction of verifiable navigable computational Grounds"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 
 [tool.setuptools.packages.find]
 include = ["navigable_compute*"]
-
