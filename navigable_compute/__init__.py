@@ -60,3 +60,10 @@ __all__ += ['InvariantDescription','InvariantTransformationSpace',
             'verify_invariant_space','verify_invariant_obstruction','verify_invariant_product',
             'encode_invariant','decode_invariant',
             'encode_invariant_obstruction','decode_invariant_obstruction']
+
+# NCS-001: task-generated finite operator vocabulary and executable algebra.
+from .self_space import EndogenousProcessor, AlgebraBudgetExceeded, build_endogenous_processor
+from .self_verify import verify_endogenous_processor
+from .self_wire import encode_processor, decode_processor
+__all__ += ['EndogenousProcessor','AlgebraBudgetExceeded','build_endogenous_processor',
+            'verify_endogenous_processor','encode_processor','decode_processor']

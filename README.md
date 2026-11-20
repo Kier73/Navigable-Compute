@@ -1,10 +1,23 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.5 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.6 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
+
+## v0.6 — A task can construct its own instruction algebra (NCS-001)
+
+**New executable frontier.** Starting only from an NCI-001 invariant description, [NCS-001](docs/NCS-001.md) derives canonical processor laws, closes them under finite transformation composition, and thereby constructs a **semantic instruction vocabulary and interpreter algebra** that did not exist in the input. Each derived opcode is internally representable by a program in the generated vocabulary. Programs compose and execute within that algebra.
+
+A 5×5 symmetry-constrained task yields **16** canonical processor-law generators and **29** distinct semantic operations. Execution order is noncommutative. Repeated execution at logical coordinate `10^100+173` uses **442** exact monoid multiplications *after algebra construction*. An independent checker validates closure, every multiplication cell, each opcode program and the bounded source-bound capsule. A forged multiplication table fails even with recomputed hashes.
+
+This demonstrates **self-contained mathematical execution semantics**, not yet a universal self-interpreter or substrate-free CPU. The next milestone is to express the interpreter *itself* within a constructed reflective Ground.
+
+```bash
+python -m unittest discover -s tests -v
+python self_space_demo.py
+```
 
 ## v0.4 — Construct the possibility space, then navigate to a processor
 
