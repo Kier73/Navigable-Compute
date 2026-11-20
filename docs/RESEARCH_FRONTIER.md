@@ -101,3 +101,31 @@ E-CPU host capabilities. Count all construction, validation, source transport,
 physical interpretation and result rendering costs. Unknown or intractable
 candidate grammars should produce a refusal or conditional hypothesis, not
 assertions of substrate-free computation or general speedups.
+
+
+## NCR-003 — Observer-generated semantic language (implemented)
+
+[NCR-003](NCR-003.md) constructs a task-relative language by quotienting the
+NCS-001 operator monoid under all two-sided program contexts that preserve
+selected outputs. This replaces the predeclared five-form grammar with a
+**finite syntactic monoid** generated from behavior. Full-state observation
+retains 29 opcodes on the 5×5 Ground, goal observation reduces to five; an
+adversarial observer requires six classes, not four as one-sided inspection
+incorrectly suggests. A Cayley regular action executes the resulting codes
+on their own code states. This is exact finite algebraic self-application,
+**not** NCR-002's full AST-level self-interpretation.
+
+**Next:** obtain a certified quotient without fully enumerating the source
+operator closure, using symbolic context constraints and counterexamples;
+reconcile the quotient-language program with the generated reflective AST
+interpreter; independently bind proof-carrying language certificates to E-CPU
+authority and VGI Ground qualification. Compare total construction and
+materialization costs against direct task execution.
+
+
+**Language continuity:** NCR-003 additionally constructs exact one-way
+surjective mappings from richer to coarser task-language quotients, with
+independent proofs of composition preservation and explicit nonrefinement
+witnesses when a proposed reverse map would fabricate erased semantics.
+This is a mathematical continuity certificate, not a durable E-CPU process
+identity, authenticated host observation, or migration of physical state.
