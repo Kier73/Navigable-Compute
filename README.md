@@ -1,6 +1,6 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.8 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.9 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
@@ -132,6 +132,41 @@ python demo.py
 ```
 
 The demo requests a partial four-byte state at cycle `10^12+123`, synthesizes a suitable starting state and reports the compact Ground composition count. It deliberately does not pretend to replay those trillion cycles.
+
+## NCR-003 — The observer generates the language (v0.9)
+
+**No five-form grammar is supplied in this lane.** A qualified task-generated
+transformation algebra (NCS-001), an admitted starting-state set, and desired
+observable labels define an exact finite contextual equivalence on programs.
+NCR-003 constructs the **coarsest two-sided congruence** preserving the
+observer's outputs under **every source-program prefix and suffix**. Its
+quotient algebra supplies the opcodes, shortest generator words, composition
+rules, and a faithful left-regular evaluator operating on its own program
+codes. This is task-relative semantic language construction, not unrestricted
+language invention or a universal AST self-interpreter.
+
+A 5×5 invariant-generated source yields **29** semantic operations. The
+observer-derived language has **29** opcodes for full-state observations,
+**5** for goal/not-goal observations, and **1** for a constant observation.
+A restrictive observer needs **6** classes when both program contexts are
+respected, whereas one-sided checking would report only **4**. A separate
+verifier enumerates all finite contextual combinations from concrete source
+maps rather than using the constructor's refinement method; its canonical
+mathematical receipt can be transported and independently reconstructed.
+
+Run `python semantic_language_demo.py`. See the precise scope, proof and
+cost contract in [NCR-003](docs/NCR-003.md). The 0.8 constructed reflective
+AST interpreter remains a separate capability; the new interpreter is the
+regular algebra action of the derived code space, not a claim of general
+self-hosting.
+
+A mathematical **language-revision contract** carries code identities from
+richer to coarser intention spaces: 29 exact-state operations project onto
+five goal operations, then one constant-output operation, preserving every
+program product. Reverse projection is refused with a source-program pair
+whose erased distinction the new observer would require. This is a semantic
+quotient homomorphism, not a physical processor migration or a claim that
+erased state can be reconstructed.
 
 ## Scope, interpretation, and safety
 
