@@ -29,3 +29,17 @@ from .task_verify import verify_task_trace
 from .wire import encode_task,decode_task
 __all__ += ['TaskComponentCertificate','TaskTraceReceipt','synthesize_task_trace',
             'verify_task_trace','encode_task','decode_task']
+
+
+# Constructive possibility-space research (NCP/NCB-001).
+from .possibility import (PossibilityAction,FactorContract,ConstructedFactor,
+    ConstructedGround,ObstructionCertificate,NotRealizable,construct_world,
+    navigate_instance,certify_nonrealizable)
+from .possibility_verify import verify_world,verify_obstruction
+from .brief import EffectCase,ActionSketch,GroundBrief,compile_brief,construct_from_briefs
+from .brief_verify import verify_brief_world
+__all__ += ['PossibilityAction','FactorContract','ConstructedFactor','ConstructedGround',
+            'ObstructionCertificate','NotRealizable','construct_world',
+            'navigate_instance','certify_nonrealizable','verify_world',
+            'verify_obstruction','EffectCase','ActionSketch','GroundBrief',
+            'compile_brief','construct_from_briefs','verify_brief_world']
