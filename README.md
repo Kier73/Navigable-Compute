@@ -1,10 +1,40 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.7 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.8 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
 
+
+
+## v0.8 — Construct an interpreter as a semantic invariant (NCR-002)
+
+**The reflective interpreter is now a constructed research output**, not a
+source fixture chosen in advance. A compiler begins with NCS-001's qualified
+endogenous processor and a **declared** five-form language and seven-operation
+semantic contract. It searches a finite set of recipe bases, selects the
+minimum supported **four primitive seed operations** (`at`, `cons`, `eq`,
+`rest`), constructs the other three operation implementations, derives a
+Ground-specific instruction encoding and builds a same-language interpreter.
+The constructor refuses unless a separate stack-based evaluator can verify
+that the resulting interpreter **interprets its own encoded source** while
+realizing a task word. Different architecture coordinates choose among all
+120 distinct source-tag encodings (representational variations, not 120 new
+computing laws).
+
+The remaining source grammar, recipe library, finite semantic requirements and
+physical host are **explicitly supplied**, not magically generated. Minimality
+is within the admitted recipe library only; bounded self-application tests do
+not imply a universal self-interpreter theorem. The mathematical receipts
+remain separate from E-CPU/VGI host authority.
+
+```bash
+python -m unittest discover -s tests -v
+python reflective_architecture_demo.py
+```
+
+See [NCR-002](docs/NCR-002.md) for constructive contracts, independent
+verification, costs, controls and the next research frontier.
 
 ## v0.6 — A task can construct its own instruction algebra (NCS-001)
 
