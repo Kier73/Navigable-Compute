@@ -23,3 +23,9 @@ __all__ += ['QuotientBudgetExceeded','ComponentCertificate','QuotientTraceReceip
 
 from .wire import encode_quotient,decode_quotient,encode_law,decode_law
 __all__ += ['encode_quotient','decode_quotient','encode_law','decode_law']
+
+from .task_quotient import TaskComponentCertificate,TaskTraceReceipt,synthesize_task_trace
+from .task_verify import verify_task_trace
+from .wire import encode_task,decode_task
+__all__ += ['TaskComponentCertificate','TaskTraceReceipt','synthesize_task_trace',
+            'verify_task_trace','encode_task','decode_task']

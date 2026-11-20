@@ -10,12 +10,13 @@ This is an ambition about **constructive mathematical representation**. It does 
 
 The user-supplied intuition, *“Reality is in-formation, and the stories we make; matter,”* is useful as motivation to ask how descriptions become externally checkable realizations. It is not a substitute for mathematical or physical evidence.
 
-## Three working layers
+## Four working layers
 
 | Lane | Input | Constructed output | Witness | Expenditure |
 |---|---|---|---|---|
 | GF(2) | Concrete affine byte program + output intention | Exact byte-state Ground and compatible initial state | Recomputed algebra + interpreter conformance on sampled/small cases | Full matrix potentially quadratic in state bits; `O(log t)` matrix compositions |
 | NCQ-001 | Possibly nonlinear program + masked future observations | Observer-minimal finite quotient and compatible initial state | Exhaustive factor behavior + independent concrete transition and cycle verifier | `O(sum 2^(8*f_i))` for queried factors, bounded; `O(k log t)` map operations thereafter |
+| NCQ-002 | Exact byte-program + requested coordinate/mask pairs | Minimal **task-only** output-signature classes and matching initial state | Independent source interpreter and cycle-based query verification | `O(sum 2^(8*f_i) log t)` exact local power-map work, bounded; no arbitrary continuation claim |
 | NCL-001 | Outcome/time constraints + declared additive law grammar, **no program** | Executable synthetic byte program and compatible initial state | Independent per-byte enumeration / solution cardinality | Small modular congruence solver, not general program search |
 
 `NCA-001` (`architect.py`) selects between these exact lanes and refuses unqualified requests. It is a typed *entrypoint*, not a generalized synthesis intelligence.
@@ -30,7 +31,7 @@ The user-supplied intuition, *“Reality is in-formation, and the stories we mak
 
 ## Five discriminating next experiments
 
-1. **Partial-time quotient / temporal collapse:** Instead of preserving `O(T^n(s))` for all `n≥0`, construct a minimal equivalence for the *exact requested coordinate set*. Test whether an overwrite machine collapses 256 current byte values to one state for queries strictly after the overwrite, with a certificate that proves time-relative sufficiency.
+1. **Symbolic time-scoped quotient (NCQ-002 continuation):** NCQ-002 now demonstrates exact collapse to one task state after an overwrite, and to two states for a single distant high-bit query. The remaining frontier is to discover the same quotient *without enumerating the source state table*, via dependency slicing, constraint graphs, BDDs/SMT and proof-carrying representation synthesis.
 2. **Symbolic coupling:** Move beyond static disconnected byte factors. Use reduced ordered BDDs, incremental SAT, AIGs, algebraic state space and bounded exact relational composition. Do not assert a compact quotient until closure and target preservation are certified. Record exploding diagrams, hard SAT instances and refusal as useful research outcomes.
 3. **Intent-driven law search:** Admit additional general-purpose grammars, including true conditional branching and parameterized nonlinearity. Search by typed semantics/CEGIS and prove each *candidate* by conformance or complete finite checks, not by fit alone. Optimize law-description size, construction effort, external output equivalence, verifier cost, and porting cost.
 4. **Independent-host certificates:** Define a canonical JSON/byte wire contract shared by E-CPU and VGI. Have a producer compile a Ground on one host and an independent checker reconstruct its proof on another with different language/algorithm. Preserve source identity and the distinction between logical coordinate and wall time.

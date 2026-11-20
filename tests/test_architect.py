@@ -26,6 +26,18 @@ class ArchitectTests(unittest.TestCase):
         self.assertEqual(r.program.instructions[0].b,13)
         self.assertTrue(r.independent_checker)
 
+    def test_task_scope_instead_of_every_future(self):
+        p=Program(1,(Instruction('set',0,0),))
+        r=realize(Intention(1,(ObservationAt(10**40+1,0,255,0),),p,observation_scope='task-only'))
+        self.assertEqual(r.lane,'task-scoped-quotient')
+        self.assertEqual(r.certificate.certificates[0].classes,1)
+        self.assertTrue(r.independent_checker)
+
+    def test_refuses_invalid_scope(self):
+        p=Program(1,(Instruction('set',0,0),))
+        with self.assertRaises(ValueError):
+            realize(Intention(1,(ObservationAt(1,0,255,0),),p,observation_scope='all-possible-physics'))
+
     def test_refuses_unsupported_fixed_input_with_missing_program(self):
         with self.assertRaises(ValueError):
             realize(Intention(1,(ObservationAt(0,0,255,12),),fixed_input=(Constraint(0,255,2),)))

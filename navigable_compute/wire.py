@@ -150,3 +150,47 @@ def decode_law(encoded:bytes):
     if cert.packet(q)!=p or not verify_additive_law(program.size,q,cert):
         raise ValueError('invalid law mathematical receipt')
     return q,cert
+
+# NCQ-002 is intentionally a distinct profile: a finite target-time quotient
+# is not transition-stable and cannot be silently interpreted as NCQ-001.
+from .task_quotient import TaskComponentCertificate,TaskTraceReceipt
+from .task_verify import verify_task_trace
+
+
+def encode_task(program:Program, queries:tuple[ObservationAt,...],
+                receipt:TaskTraceReceipt, *, fixed:tuple[Constraint,...]=())->bytes:
+    if not verify_task_trace(program,queries,receipt,fixed=fixed):
+        raise ValueError('invalid task-scoped receipt')
+    return _wrap('task-scoped-quotient',receipt.packet(queries,fixed))
+
+
+def decode_task(encoded:bytes, trusted_program:Program):
+    doc=_loads(encoded)
+    if doc['kind']!='task-scoped-quotient':
+        raise ValueError('not a task-scoped receipt')
+    p=doc['payload']
+    if set(p)!={'schema','scope','program_sha256','queries','fixed','initial_hex',
+               'observed_masked','candidate_count_decimal','global_bits','examined_states',
+               'power_products','factors','certificates'}:
+        raise ValueError('task receipt shape mismatch')
+    if (p['schema']!='navigable-compute.task-quotient.v0.1'
+        or p['scope']!='only-the-declared-temporal-observations'):
+        raise ValueError('unsupported task scope')
+    try:
+        queries=_parse_queries(p)
+        fixed=_parse_fixed(p)
+        certs=tuple(TaskComponentCertificate(tuple(c['indices']),tuple(c['class_of']),
+                             tuple(tuple(v) for v in c['labels']),c['transition_sha256'])
+                    for c in p['certificates'])
+        r=TaskTraceReceipt(bytes.fromhex(p['initial_hex']),tuple(p['observed_masked']),
+                           _decimal(p['candidate_count_decimal'],max_bits=2048),
+                           _uint(p['global_bits'],max_bits=16),
+                           _uint(p['examined_states'],max_bits=24),
+                           _uint(p['power_products'],max_bits=32),
+                           tuple(tuple(c) for c in p['factors']),certs,
+                           p['program_sha256'],sha256(canonical_bytes(p)).hexdigest())
+    except (TypeError,ValueError,KeyError,IndexError,OverflowError) as exc:
+        raise ValueError('invalid task receipt fields') from exc
+    if r.packet(queries,fixed)!=p or not verify_task_trace(trusted_program,queries,r,fixed=fixed):
+        raise ValueError('independent task receipt check failed')
+    return queries,fixed,r

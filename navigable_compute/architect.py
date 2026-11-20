@@ -14,6 +14,8 @@ from .observability import ObservationAt, synthesize_trace, verify_trace, TraceR
 from .quotient import synthesize_quotient_trace, QuotientTraceReceipt
 from .quotient_verify import verify_quotient_trace
 from .law_synthesis import synthesize_additive_law, verify_additive_law, LawCertificate
+from .task_quotient import synthesize_task_trace, TaskTraceReceipt
+from .task_verify import verify_task_trace
 
 
 @dataclass(frozen=True)
@@ -22,6 +24,7 @@ class Intention:
     observations: tuple[ObservationAt, ...]
     program: Optional[Program] = None
     fixed_input: tuple[Constraint, ...] = ()
+    observation_scope: str = "all-future"
 
 
 @dataclass(frozen=True)
@@ -30,7 +33,7 @@ class Realization:
     program: Program
     initial: bytes
     observations: tuple[int, ...]
-    certificate: TraceResult | QuotientTraceReceipt | LawCertificate
+    certificate: TraceResult | QuotientTraceReceipt | TaskTraceReceipt | LawCertificate
     independent_checker: bool
 
 
@@ -46,6 +49,8 @@ def realize(intention: Intention, *, max_states: int=4096,
         raise TypeError('typed intention required')
     if not 1<=intention.size<=128 or not intention.observations:
         raise ValueError('invalid machine shape or missing observations')
+    if intention.observation_scope not in ('all-future','task-only'):
+        raise ValueError('unqualified observation scope')
     if intention.program is None:
         if intention.fixed_input:
             raise ValueError('law construction with fixed initial bytes is not yet admitted')
@@ -56,6 +61,13 @@ def realize(intention: Intention, *, max_states: int=4096,
     program=intention.program
     if program.size!=intention.size:
         raise ValueError('declared machine size disagrees with program')
+    if intention.observation_scope=='task-only':
+        cert=synthesize_task_trace(program,intention.observations,fixed=intention.fixed_input,
+                                   max_states=max_states,max_coordinate_bits=max_coordinate_bits)
+        if not verify_task_trace(program,intention.observations,cert,fixed=intention.fixed_input,
+                                 max_states=max_states,max_coordinate_bits=max_coordinate_bits):
+            raise AssertionError('independent time-scoped checker disagreed')
+        return Realization('task-scoped-quotient',program,cert.initial,cert.observed,cert,True)
     try:
         compile_ground(program)
     except UnsupportedGround:
