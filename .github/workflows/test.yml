@@ -17,4 +17,4 @@ jobs:
       - run: python demo.py
       - run: python deep_demo.py
       - run: python possibility_demo.py
-      - run: python coupled_demo.py
+      - run: python invariant_demo.py
