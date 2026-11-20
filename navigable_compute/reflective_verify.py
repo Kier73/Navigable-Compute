@@ -15,13 +15,15 @@ from .reflective_ground import (compile_reflector, compile_task_program,
                                 SCHEMA)
 
 
-def reference_run(program, entry, argv, table, *, fuel=10000000):
+def reference_run(program, entry, argv, table, *, fuel=10000000, seed_primitives=None):
     if type(program) is not tuple or not 1 <= len(program) <= 48 or type(entry) is not str:
         raise ValueError('invalid program')
     if type(argv) is not tuple or type(table) is not tuple:
         raise ValueError('bad machine values')
     if type(fuel) is not int or not 1 <= fuel <= 20000000:
         raise ValueError('bad fuel')
+    if seed_primitives is not None and (type(seed_primitives) is not tuple or any(type(x) is not str for x in seed_primitives)):
+        raise ValueError('invalid verifier seed')
     functions = {}
     for row in program:
         if type(row) is not tuple or len(row) != 2 or type(row[0]) is not str or row[0] in functions:
@@ -75,6 +77,8 @@ def reference_run(program, entry, argv, table, *, fuel=10000000):
                     raise ValueError('unknown called function')
                 stack.append(('expression',functions[name],args))
                 continue
+            if seed_primitives is not None and name not in seed_primitives:
+                raise ValueError('primitive absent from independent seed')
             if name=='eq' and len(args)==2:
                 value=type(args[0]) is type(args[1]) and args[0]==args[1]
             elif name=='empty' and len(args)==1 and type(args[0]) is tuple:
