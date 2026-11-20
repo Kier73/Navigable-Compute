@@ -85,6 +85,7 @@ def verify_coupled(source:CoupledBrief, world:CoupledGround)->bool:
         if basis is None:
             return False
         states,safety,goals,initial=basis
+        position={state:i for i,state in enumerate(states)}
         n=len(states)
         if (world.states!=states or len(world.rank)!=n or
             len(world.optimal)!=n or len(world.policy)!=n or
@@ -112,17 +113,17 @@ def verify_coupled(source:CoupledBrief, world:CoupledGround)->bool:
                 if world.optimal[i] or world.policy[i]:
                     return False
                 # A losing safe state cannot have even one universally winning action.
-                if any(all(t in safety and world.rank[states.index(t)]>=0
+                if any(all(t in safety and world.rank[position[t]]>=0
                            for t in outcome)
                        for outcome in relation.values()):
                     return False
                 continue
             choices=[]
             for action,outcomes in relation.items():
-                if any(t not in safety or world.rank[states.index(t)]<0
+                if any(t not in safety or world.rank[position[t]]<0
                        for t in outcomes):
                     continue
-                maximum=max(world.rank[states.index(t)] for t in outcomes)
+                maximum=max(world.rank[position[t]] for t in outcomes)
                 if maximum < depth-1:  # a strictly faster controller exists
                     return False
                 if maximum==depth-1:
@@ -136,9 +137,9 @@ def verify_coupled(source:CoupledBrief, world:CoupledGround)->bool:
             total*=len(choices)
         if remainder or total!=world.optimal_laws:
             return False
-        if any(world.rank[states.index(s)]<0 for s in initial):
+        if any(world.rank[position[s]]<0 for s in initial):
             return False
-        if world.worst_steps!=max(world.rank[states.index(s)] for s in initial):
+        if world.worst_steps!=max(world.rank[position[s]] for s in initial):
             return False
         return world.digest==_sha(world.encode())
     except (ValueError,TypeError,IndexError,KeyError,AttributeError,OverflowError):
