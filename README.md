@@ -1,6 +1,6 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.4 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.5 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
