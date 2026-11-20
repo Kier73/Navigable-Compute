@@ -1,6 +1,6 @@
 # Navigable-Compute
 
-**An intention-first synthetic byte processor.** Version 0.6 — November 20, 2026.
+**An intention-first synthetic byte processor.** Version 0.7 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
 
@@ -57,6 +57,34 @@ python deep_demo.py
 ```
 
 The [research frontier](docs/RESEARCH_FRONTIER.md) connects E-CPU, E-CPU Virtual Processor, VGI, IFS quadratic/metaplectic studies, and the next experiments in state-space quotienting, symbolic coupling, automatic law synthesis and distributed qualification. The claimed RH proof remains a research premise, **not a theorem used by the executable code**.
+
+
+## NCR-001 — A reflective Ground interpreting its own interpreter (v0.7)
+
+**The processor's task-derived algebra now has a same-language interpreter
+expressible as ordinary data in its reflective computational space.** Given
+invariants, NCI-001 derives valid laws, NCS-001 closes them into an endogenous
+29-operation semantic processor (5×5 fixture), and NCR-001 constructs a small
+program `E` that interprets programs of its own expression language. The
+experiment evaluates a task program directly, through `E`, and by asking `E`
+to interpret **its own source** while it interprets the task. A separately
+implemented, stack-based evaluator rechecks the exact outputs and work.
+
+This is finite, bounded same-language reflection, **not** a general or
+substrate-free self-hosting claim. The tuple/conditional/call language and
+seven primitive operations remain an explicitly supplied reflection seed; the
+task's instruction semantics are generated from the invariant Ground. The
+source is not executed as arbitrary Python and there is no magic `eval` opcode.
+Portable receipts are audited against the independently verified source Ground.
+
+```bash
+python -m unittest discover -s tests -v
+python reflective_demo.py
+```
+
+Read [NCR-001](docs/NCR-001.md) for the commuting semantic identity,
+independent continuation-machine checker, measured reflection costs, and the
+remaining path toward generating the reflective language itself.
 
 ## First running experiment
 
