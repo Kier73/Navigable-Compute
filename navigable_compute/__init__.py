@@ -43,3 +43,20 @@ __all__ += ['PossibilityAction','FactorContract','ConstructedFactor','Constructe
             'navigate_instance','certify_nonrealizable','verify_world',
             'verify_obstruction','EffectCase','ActionSketch','GroundBrief',
             'compile_brief','construct_from_briefs','verify_brief_world']
+
+# NCI-001: derive an entire admissible transformation family from invariants.
+from .invariant_space import (InvariantDescription, InvariantTransformationSpace,
+    InvariantObstruction, InvariantProduct, NoInvariantRealization,
+    construct_invariant_space, navigate_invariant_instance,
+    certify_invariant_obstruction, construct_invariant_product)
+from .invariant_verify import (verify_invariant_space, verify_invariant_obstruction,
+                               verify_invariant_product)
+from .invariant_wire import (encode_invariant, decode_invariant,
+                             encode_invariant_obstruction, decode_invariant_obstruction)
+__all__ += ['InvariantDescription','InvariantTransformationSpace',
+            'InvariantObstruction','InvariantProduct','NoInvariantRealization',
+            'construct_invariant_space','navigate_invariant_instance',
+            'certify_invariant_obstruction','construct_invariant_product',
+            'verify_invariant_space','verify_invariant_obstruction','verify_invariant_product',
+            'encode_invariant','decode_invariant',
+            'encode_invariant_obstruction','decode_invariant_obstruction']
