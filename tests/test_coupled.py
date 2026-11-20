@@ -122,7 +122,7 @@ class CoupledPossibilityTests(unittest.TestCase):
         self.assertFalse(verify_coupled(changed_resource,world))
         failed=coupling(capacity=0)
         witness=certify_coupled_obstruction(failed)
-        invalid=replace(witness,trap=((2,2),))
+        invalid=replace(witness,trap=((0,0),))
         invalid=replace(invalid,digest=sha256(
             json.dumps(invalid.encode(),sort_keys=True,
                        separators=(',',':'),ensure_ascii=True).encode(),
