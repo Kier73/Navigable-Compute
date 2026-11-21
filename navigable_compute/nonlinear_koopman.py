@@ -68,7 +68,7 @@ class PolynomialInvariants:
         if type(n) is not int or not 2 <= n <= 128:
             raise ValueError('require 2..128 implicitly represented source bits')
         if (type(self.tiers) is not tuple or len(self.tiers) != n or
-            any(type(t) is not int or not -1 <= t <= 8 for t in self.tiers)):
+            any(type(t) is not int or not -1 <= t <= 32 for t in self.tiers)):
             raise ValueError('invalid causal rank tiers')
         active = {t for t in self.tiers if t >= 0}
         if active and active != set(range(max(active) + 1)):
