@@ -1,5 +1,10 @@
 # Navigable-Compute
 
+## NCR-005 — The observer's language constructs its own coordinate algebra
+
+[NCR-005](docs/NCR-005.md) connects NCI-001 invariant-derived generator maps, NCR-004 quotient-first observer languages, and a new independently checked mathematical representation constructor. Exact transitive commuting involution actions become minimal-dimensional (within faithful affine representations) finite-field **character coordinates** with generated Walsh readouts; noncommuting and noninvertible monoids retain exact **one-hot** representations. Both modes support source-bound logarithmic-time operator powering and independently reconstructed canonical observation receipts. The hidden-S8 source's 80,640 transformations become a two-instruction, one-coordinate observer processor without enumerating the original monoid in construction. This is finite mathematical synthesis—not live environmental-law discovery, physical host execution, or a universal speedup. Run `python native_algebra_demo.py` and `python -m unittest discover -s tests -p 'test_observer_native.py' -v`.
+
+
 **An intention-first synthetic byte processor.** Version 1.0 — November 20, 2026.
 
 The purpose is not to emulate physical instructions more quickly. It is to construct an *exact computational Ground* from a program, navigate to a requested future coordinate without replaying every cycle, and synthesize an initial byte state capable of satisfying an observer's intended output.
