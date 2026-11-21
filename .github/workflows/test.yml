@@ -23,3 +23,4 @@ jobs:
       - run: python reflective_architecture_demo.py
       - run: python semantic_language_demo.py
       - run: python preclosure_demo.py
+      - run: python native_algebra_demo.py
