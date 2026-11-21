@@ -1,5 +1,10 @@
 # Navigable-Compute
 
+## NCR-007 — Invariant-generated nonlinear observer processors
+
+[NCR-007](docs/NCR-007.md) constructs exact **nonlinear Boolean source laws** from ranked causal dependencies, protected-register conservation, symmetry and polynomial degree—rather than supplying a source transition table. It then closes the observer's algebraic-normal-form functions under the generated laws' Koopman pullbacks, deriving an exact linear feature-space processor preserving every future observer output. An independent verifier checks the original polynomial identities without source-state enumeration; the tests include exhaustive small-source future equivalence, quadratic nonlinear witnesses, cross-checks with NCR-006, adversarial forged receipts and deliberate feature-budget refusals. The research demonstrates intention-conditioned nonlinear computational representation, **not** general nonlinear-system identification, proven speedup or physical authority. Run `python nonlinear_koopman_demo.py` and the full test suite.
+
+
 ## NCR-006 — Symbolic observer sufficiency without enumerating source states
 
 [NCR-006](docs/NCR-006.md) derives the exact minimal future-observer **state quotient** of a fully declared binary-affine system via dual finite-field row-space closure, *without materializing the 2^n source states*. It generates a smaller affine processor and exact observer decoder, independently checks every source-to-quotient operator identity, and audits far-time queries by powering the original source matrices separately. A 128-bit source becomes a three-bit observer processor for a declared three-channel output; an adversarial 48-bit shift system **refuses** an eight-bit budget because every hidden bit becomes future-observable. This mathematical family is not a claim about arbitrary nonlinear laws or external physical execution. Reproduce with `python symbolic_quotient_demo.py` and the full test suite.
