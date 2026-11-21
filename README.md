@@ -1,5 +1,10 @@
 # Navigable-Compute
 
+## NCR-006 — Symbolic observer sufficiency without enumerating source states
+
+[NCR-006](docs/NCR-006.md) derives the exact minimal future-observer **state quotient** of a fully declared binary-affine system via dual finite-field row-space closure, *without materializing the 2^n source states*. It generates a smaller affine processor and exact observer decoder, independently checks every source-to-quotient operator identity, and audits far-time queries by powering the original source matrices separately. A 128-bit source becomes a three-bit observer processor for a declared three-channel output; an adversarial 48-bit shift system **refuses** an eight-bit budget because every hidden bit becomes future-observable. This mathematical family is not a claim about arbitrary nonlinear laws or external physical execution. Reproduce with `python symbolic_quotient_demo.py` and the full test suite.
+
+
 ## NCR-005 — The observer's language constructs its own coordinate algebra
 
 [NCR-005](docs/NCR-005.md) connects NCI-001 invariant-derived generator maps, NCR-004 quotient-first observer languages, and a new independently checked mathematical representation constructor. Exact transitive commuting involution actions become minimal-dimensional (within faithful affine representations) finite-field **character coordinates** with generated Walsh readouts; noncommuting and noninvertible monoids retain exact **one-hot** representations. Both modes support source-bound logarithmic-time operator powering and independently reconstructed canonical observation receipts. The hidden-S8 source's 80,640 transformations become a two-instruction, one-coordinate observer processor without enumerating the original monoid in construction. This is finite mathematical synthesis—not live environmental-law discovery, physical host execution, or a universal speedup. Run `python native_algebra_demo.py` and `python -m unittest discover -s tests -p 'test_observer_native.py' -v`.
