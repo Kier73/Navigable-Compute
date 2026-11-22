@@ -2,8 +2,9 @@
 
 ## NCR-007 — Invariant-generated nonlinear observer processors
 
-[NCR-007](docs/NCR-007.md) constructs exact **nonlinear Boolean source laws** from ranked causal dependencies, protected-register conservation, symmetry and polynomial degree—rather than supplying a source transition table. It then closes the observer's algebraic-normal-form functions under the generated laws' Koopman pullbacks, deriving an exact linear feature-space processor preserving every future observer output. An independent verifier checks the original polynomial identities without source-state enumeration; the tests include exhaustive small-source future equivalence, quadratic nonlinear witnesses, cross-checks with NCR-006, adversarial forged receipts and deliberate feature-budget refusals. The research demonstrates intention-conditioned nonlinear computational representation, **not** general nonlinear-system identification, proven speedup or physical authority. Run `python nonlinear_koopman_demo.py` and the full test suite.
+[NCR-007](docs/NCR-007.md) constructs exact nonlinear Boolean laws from ranked causal topology, conservation, symmetry and polynomial degree. It closes the requested observer functions under exact Koopman pullbacks, generating a coordinate `q(x)` and source-action matrices with `q(T_a(x)) = M_a q(x)`. Source and feature identity are checked with independent exact polynomial implementations, including small-source future-observation equivalence, genuine quadratic witnesses, tampering controls and feature-budget refusals. The reproducible fixture runs with `python nonlinear_koopman_demo.py`.
 
+The [implementation-first document](docs/NCR-007.md) shows the actual API sequence and distinguishes minimum exact *linear feature rank* from minimum *realized state encoding*. The [translation discovery log](https://github.com/Kier73/In-Formation-Space/blob/main/reports/TRANSLATION_DISCOVERY_LOG.md) compares this distinction with E-CPU and VL-I's related observer quotients.
 
 ## NCR-006 — Symbolic observer sufficiency without enumerating source states
 
