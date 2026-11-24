@@ -1,0 +1,22 @@
+name: NCR-013 VGI adaptive evidence
+on: [push, pull_request]
+jobs:
+  vgi-attention:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Kier73/Virtual-Ground-Interpreter
+          ref: ae3f949b7d0b2aaa42236bc7cc37e9857384b174
+          path: .vgi-source
+          sparse-checkout: virtual_ground_interpreter
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install -e .vgi-source/virtual_ground_interpreter
+      - run: python -m unittest discover -s integration -p test_attention_evidence.py -v

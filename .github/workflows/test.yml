@@ -31,3 +31,4 @@ jobs:
       - run: python intention_fibre_demo.py
       - run: python adaptive_fibre_demo.py
       - run: python fibre_attention_demo.py
+      - run: python adaptive_attention_demo.py
