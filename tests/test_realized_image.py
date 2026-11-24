@@ -52,7 +52,9 @@ class RealizedImageTests(unittest.TestCase):
         self.assertTrue(verify_koopman_ground(family, ground))
         cert = construct_image(ground.basis, family.description.width)
         self.assertTrue(verify_image(ground.basis, family.description.width, cert))
-        self.assertLessEqual(cert.bits, ground.dimension)
+        self.assertEqual(ground.dimension, 10)
+        self.assertEqual(cert.cardinality, 192)
+        self.assertEqual(cert.bits, 8)
         rng = random.Random(8)
         for _ in range(64):
             x = rng.getrandbits(128)
