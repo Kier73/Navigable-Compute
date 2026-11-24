@@ -27,3 +27,4 @@ jobs:
       - run: python symbolic_quotient_demo.py
       - run: python nonlinear_koopman_demo.py
       - run: python realized_image_demo.py
+      - run: python complexity_navigation_demo.py
