@@ -69,6 +69,32 @@ class ComplexityNavigationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             choose(profiles, 1, continuation=True, max_bits=0)
 
+    def test_independent_endpoint_future_class_contraction(self):
+        from itertools import product
+        # Exact first-lane + protected bit source, independently reconstructed.
+        a = ((6,), (8,), (16,), (64,), (128,), (), (), (), (256,))
+        b = ((2,), (16,), (8,), (128,), (64,), (192,), (), (), (256,))
+        def apply(rows, x):
+            return sum((sum((x & m) == m for m in p) % 2) << i
+                       for i,p in enumerate(rows))
+        trans = [[apply(rows,x) for x in range(512)] for rows in (a,b)]
+        obs = lambda x: (x & 1) | ((x >> 7) & 2)
+        classes = [obs(x) for x in range(512)]
+        while True:
+            index = {}
+            new = [index.setdefault((classes[x], *(classes[t[x]] for t in trans)),
+                                    len(index)) for x in range(512)]
+            if new == classes:
+                break
+            classes = new
+        # Moore refinement directly on source transitions, no feature lift.
+        for depth, expected in enumerate((192,48,12,4,2)):
+            for word in product(range(2), repeat=depth):
+                ending = list(range(512))
+                for action in word:
+                    ending = [trans[action][x] for x in ending]
+                self.assertEqual(len({classes[x] for x in ending}), expected)
+
     def test_cost_policy_exact_counterfactual_and_eligibility(self):
         p = Portfolio(self.family, (0,), 1)
         # Deliberate deterministic cost profile, distinct from observed timings.
