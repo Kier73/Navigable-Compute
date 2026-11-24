@@ -26,10 +26,21 @@ def features(v,q,limits=Limits()):
     """
     validate_request(v,q)
     _limits(limits)
+    support,rule_count=rule_shape(v)
+    return shape_features(v,q,limits,support,rule_count)
+
+
+def rule_shape(v):
+    rules=v.rules
     support=0
-    for r in v.rules:
+    for r in rules:
         for m in r:
             support|=m
+    return support,len(rules)
+
+
+def shape_features(v,q,limits,support,rule_count):
+    """Shared feature projection; callers validate request and limits."""
     if type(q) is Cube:
         mask=q.ones|q.zeros
         kind="cube"
@@ -42,7 +53,7 @@ def features(v,q,limits=Limits()):
         size="small" if len(q.target)<=1 else "large"
     overlap="disjoint" if not mask&support else "covered" if not mask&~support else "partial"
     # Support and source width are bucketed; unseen contexts default safely.
-    rules="none" if not v.rules else "one" if len(v.rules)==1 else "many"
+    rules="none" if not rule_count else "one" if rule_count==1 else "many"
     return (kind,size,overlap,rules,v.parent.width,
             limits.cofactor_work,limits.span_work,limits.rewrite_steps,
             limits.rewrite_work,limits.witness_samples,limits.residual_nodes,limits.residual_work)

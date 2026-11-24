@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-021 — Compiled reflective routing
+
+[NCR-021](docs/NCR-021.md) compiles the frozen empirical schedule policy to a direct lookup and binds feature geometry to an admitted rule catalogue. It measures selection and end-to-end costs without caching semantic answers. Run `python compiled_routing_demo.py`.
+
 ## NCR-020 — Reflective cost-aware routing
 
 [NCR-020](docs/NCR-020.md) observes paired verified schedule alternatives, learns context-specific empirical route costs, restores advisory statistics and compares frozen policy on matched and shifted intentions. The dedicated CI imports actual IFS operation-span instrumentation. Run `python reflective_routing_demo.py`.
