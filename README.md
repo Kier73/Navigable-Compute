@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-014 — Intent-neutral observation memory
+
+[NCR-014](docs/NCR-014.md) retains VGI-finalized observations across new Boolean intentions and seals exact evidence bytes using the native E-CPU recovery lineage. A recovered receiver can reuse known bits and independently qualify new targets while preserving original source addresses. The cross-repository integration exercises actual OS-process exit and quorum recovery.
+
 ## NCR-013 — Conditional attention policies and VGI evidence
 
 [NCR-013](docs/NCR-013.md) compiles exact adaptive policies from the existing NCR-012 outcome proofs. Each observation can stop or select a different next measurement, preserving parent addresses. The optional actual VGI adapter binds receiver-finalized evidence to the policy, source epoch, session and previous observations. Run `python adaptive_attention_demo.py`.

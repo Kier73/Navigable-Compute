@@ -136,6 +136,23 @@ class Runtime:
     def identity(self):
         return self._identity
 
+    @property
+    def parent(self):
+        return self._catalogue.parent
+
+    @property
+    def target(self):
+        return self._catalogue.target
+
+    def polynomial(self,name):
+        return self._offers[name].polynomial
+
+    def observation_equations(self,session):
+        """Exact observed ANFs in the original parent coordinate convention."""
+        from .fibre_attention import _equal
+        self.view(session)
+        return tuple(_equal(self.polynomial(name),bit) for name,bit in session.trace)
+
     def begin(self,epoch,session_id):
         s = Session(epoch,session_id)
         self.view(s)
