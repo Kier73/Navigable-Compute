@@ -35,7 +35,7 @@ def main():
     path = construct_fibre(128,tuple((3<<i,) for i in range(127)))
     run("coupled",path,(Offer("end",(1<<127,),1),Offer("middle",(1<<64,),1),
                         Offer("other-end",(1,),1)),
-        (1<<127,1<<126),Prices(20,1,1,1),1)
+        (1<<126,1<<127),Prices(20,1,1,1),1)
 
 
 if __name__ == "__main__":
