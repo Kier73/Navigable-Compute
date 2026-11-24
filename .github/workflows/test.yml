@@ -34,3 +34,4 @@ jobs:
       - run: python adaptive_attention_demo.py
       - run: python procedural_vocabulary_demo.py
       - run: python symbolic_induction_demo.py
+      - run: python induced_transversal_demo.py
