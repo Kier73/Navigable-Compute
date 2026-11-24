@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-011 — Adaptive coordinate formation and persistent refinement
+
+[NCR-011](docs/NCR-011.md) uses primal-incidence frontier proposals to select a bounded independently checked NCR-010 ordering, then intersects additional observations through a persistent residual overlay. Old subtree counts are reused and refined addresses map monotonically back to the original coordinate space. Run `python adaptive_fibre_demo.py`.
+
 ## NCR-010 — Addressable inverse temporal intentions
 
 [NCR-010](docs/NCR-010.md) compiles multiple masked observations at specified logical horizons into an exact counted residual DAG. Its rank/unrank operations directly address every satisfying initial state without enumerating the full source cube; an independent checker audits all residual edges and counts. A connected 128-bit nonlinear path and the native NCR-007 temporal fixture distinguish compact formation from exponential worst cases. Run `python intention_fibre_demo.py`.
