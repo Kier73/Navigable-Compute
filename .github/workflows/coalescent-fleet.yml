@@ -1,0 +1,36 @@
+name: NCR-022 independent fleet convergence
+on: [push, pull_request]
+jobs:
+  observer:
+    strategy:
+      fail-fast: false
+      matrix:
+        index: [0, 1, 2, 3]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python fleet_artifact_demo.py produce --index ${{ matrix.index }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fleet-part-${{ matrix.index }}
+          path: fleet-artifacts/
+  coalesce:
+    needs: observer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fleet-part-*
+          path: fleet-artifacts/
+      - run: python fleet_artifact_demo.py merge
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coalesced-fleet
+          path: fleet-artifacts/coalesced.json

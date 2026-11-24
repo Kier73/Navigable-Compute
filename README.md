@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-022 — Coalescent intelligence fleet
+
+[NCR-022](docs/NCR-022.md) merges independently verified base-referenced algebraic discoveries across independent processes and separately scheduled hosted artifact paths. Different proof variants retain provenance while deterministic semantic union enables new collective intentions. Run `python coalescent_fleet_demo.py`.
+
 ## NCR-021 — Compiled reflective routing
 
 [NCR-021](docs/NCR-021.md) compiles the frozen empirical schedule policy to a direct lookup and binds feature geometry to an admitted rule catalogue. It measures selection and end-to-end costs without caching semantic answers. Run `python compiled_routing_demo.py`.

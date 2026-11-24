@@ -39,3 +39,4 @@ jobs:
       - run: python intention_interpreter_demo.py
       - run: python reflective_routing_demo.py
       - run: python compiled_routing_demo.py
+      - run: python coalescent_fleet_demo.py
