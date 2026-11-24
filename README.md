@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-013 — Conditional attention policies and VGI evidence
+
+[NCR-013](docs/NCR-013.md) compiles exact adaptive policies from the existing NCR-012 outcome proofs. Each observation can stop or select a different next measurement, preserving parent addresses. The optional actual VGI adapter binds receiver-finalized evidence to the policy, source epoch, session and previous observations. Run `python adaptive_attention_demo.py`.
+
 ## NCR-012 — Structural attention on persistent solution Grounds
 
 [NCR-012](docs/NCR-012.md) checks every outcome of bounded offered observation packets and chooses by exact task fallback, retained overlay nodes and future address-embedding work under a declared uniform hidden-member prior. State-pair information and task distinction are separate diagnostics; all preparation and independent verification are paid. Run `python fibre_attention_demo.py`.
