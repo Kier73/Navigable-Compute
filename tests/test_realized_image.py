@@ -68,6 +68,36 @@ class RealizedImageTests(unittest.TestCase):
             for a in range(len(family.operators)):
                 self.assertLess(packed_step(ground, cert, code, a), cert.cardinality)
 
+    def test_original_fixture_independent_truth_table_oracle(self):
+        # Relabel protected source bit 64 as local bit 8. The selected
+        # observer cone is confined to lane zero and that protected bit.
+        a = ((6,), (8,), (16,), (64,), (128,), (), (), (), (256,))
+        b = ((2,), (16,), (8,), (128,), (64,), (192,), (), (), (256,))
+        count = 512
+        def apply(rows, x):
+            return sum((sum((x & m) == m for m in p) % 2) << i
+                       for i, p in enumerate(rows))
+        actions = [[apply(rows, x) for x in range(count)] for rows in (a,b)]
+        features, pivots = [], {}
+        def insert(v):
+            for p in sorted(pivots, reverse=True):
+                if v >> p & 1:
+                    v ^= pivots[p]
+            if v:
+                pivots[v.bit_length()-1] = v
+                features.append(v)
+        for bit in (0,8):
+            insert(sum(((x >> bit) & 1) << x for x in range(count)))
+        i = 0
+        while i < len(features):
+            for action in actions:
+                insert(sum(((features[i] >> action[x]) & 1) << x
+                           for x in range(count)))
+            i += 1
+        image = {sum(((f >> x) & 1) << j for j, f in enumerate(features))
+                 for x in range(count)}
+        self.assertEqual((len(features), len(image)), (10,192))
+
     def test_budget_and_forgery(self):
         basis = ((1,), (2,), (3,))
         cert = construct_image(basis, 2)
