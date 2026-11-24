@@ -18,7 +18,10 @@ class ComplexityNavigationTests(unittest.TestCase):
         for word, repetitions in (((), 10**100), ((0,), 0), ((0,), 1),
                                    ((0,1), 1), ((1,0), 10**100+173)):
             p = Portfolio(self.family, word, repetitions)
-            self.assertEqual(set(p.candidates), {"source", "terminal", "feature", "packed"})
+            expected_modes = {"source", "terminal", "feature", "packed"}
+            if len(p.prefix) == self.family.description.drain_horizon:
+                expected_modes.add("stationary")
+            self.assertEqual(set(p.candidates), expected_modes)
             self.assertEqual(p.candidates["feature"].retained_bits, 10)
             self.assertEqual(p.candidates["packed"].retained_bits, 8)
             for _ in range(8):
@@ -55,6 +58,16 @@ class ComplexityNavigationTests(unittest.TestCase):
         self.assertEqual(far.candidates["terminal"].read_mask, 1<<64)
         self.assertEqual(far.candidates["feature"].read_mask, 1<<64)
         self.assertEqual(far.candidates["source"].read_mask.bit_count(), 64)
+        self.assertEqual(far.candidates["stationary"].retained_bits, 1)
+        for x in (0, 1<<64):
+            y,z = far.realize("stationary", x)
+            for a in (0,1,0):
+                self.assertEqual(far.continue_from("stationary", z, a), (y,z))
+        profiles = far.calibrate((0, 1<<64))
+        self.assertEqual(choose(profiles, 1, continuation=True, max_bits=1).candidate.mode,
+                         "stationary")
+        with self.assertRaises(ValueError):
+            choose(profiles, 1, continuation=True, max_bits=0)
 
     def test_cost_policy_exact_counterfactual_and_eligibility(self):
         p = Portfolio(self.family, (0,), 1)
