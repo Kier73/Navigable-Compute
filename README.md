@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-016 — Symbolic induction
+
+[NCR-016](docs/NCR-016.md) discovers additional vanishing rules by independently checked Boolean product identities instead of cold target formation. It skips already resolved proposals and compares the resulting vocabulary with NCR-015. Run `python symbolic_induction_demo.py`.
+
 ## NCR-015 — Induced procedural vocabulary
 
 [NCR-015](docs/NCR-015.md) learns independently qualified vanishing ANFs from acquired observation support and reuses their monomial multiples to interpret unseen intentions. Warm certificates are exact algebraic identities, with cold refinement as the reference and explicit UNKNOWN for unresolved rewrites. Run `python procedural_vocabulary_demo.py`.

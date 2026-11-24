@@ -137,6 +137,48 @@ class Vocabulary:
         """Try grammar proposals; unknowns are not admitted as relations."""
         return tuple(p for p in self.proposals() if self.learn(p))
 
+    def train_symbolic(self,*,max_trials=4096,max_work=MAX_REDUCTION_WORK):
+        """Discover vanishing rules by multiplication, with no cold queries.
+
+        For g=q XOR b and any already admitted r, g*r=g implies g=0 on
+        the fibre. Each successful identity is checked by the independent
+        algebraic verifier before admission. Already resolved proposals are
+        not retained. No completeness claim; budgets refuse partial training
+        (already admitted rules remain valid).
+        """
+        from .procedural_vocabulary_verify import verify_reduction
+        if (type(max_trials) is not int or not 0<=max_trials<=4096
+                or type(max_work) is not int or not 0<=max_work<=MAX_REDUCTION_WORK):
+            raise ValueError("invalid symbolic induction budget")
+        added=[]
+        trials=work=0
+        for q in self.proposals():
+            if self.reduce(q).value is not None:
+                continue
+            for b in (0,1):
+                g=_toggle(q,b)
+                if not g:
+                    continue
+                proof=None
+                for i,r in enumerate(self.rules):
+                    trials+=1
+                    work+=len(g)*len(r)
+                    if trials>max_trials or work>max_work:
+                        raise FibreBudget("symbolic induction budget")
+                    # Replay the entire product, not a sampled truth table.
+                    candidate=Reduction(g,(),tuple((i,m) for m in g),len(g)*len(r))
+                    if verify_reduction(self,g,candidate):
+                        proof=candidate
+                        break
+                if proof is None:
+                    continue
+                if len(self._learned)>=MAX_RULES:
+                    raise FibreBudget("learned rule capacity")
+                self._learned+=(Learned(q,b,proof),)
+                added.append(q)
+                break
+        return tuple(added),trials,work
+
     def reduce(self,target,*,max_steps=MAX_STEPS,max_work=MAX_REDUCTION_WORK):
         _input(self.parent.width,(target,))
         if (type(max_steps) is not int or not 0<=max_steps<=MAX_STEPS
