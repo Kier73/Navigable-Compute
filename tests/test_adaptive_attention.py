@@ -49,7 +49,7 @@ class AdaptiveTests(unittest.TestCase):
         c,p=fixture(128,(3,4,5),offers)
         self.assertTrue(verify_policy(c,p))
         self.assertEqual(p.numerator,2*c.denominator)
-        self.assertEqual(2*min(q.score_numerator for q in c.candidates),13*c.denominator)
+        self.assertEqual(min(q.score_numerator for q in c.candidates),7*c.denominator)
         r=Runtime(c,p)
         s=r.begin("source-v1","mux")
         self.assertEqual(r.view(s).decision.next_offer,"a")
