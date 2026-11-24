@@ -32,3 +32,4 @@ jobs:
       - run: python adaptive_fibre_demo.py
       - run: python fibre_attention_demo.py
       - run: python adaptive_attention_demo.py
+      - run: python procedural_vocabulary_demo.py

@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-015 — Induced procedural vocabulary
+
+[NCR-015](docs/NCR-015.md) learns independently qualified vanishing ANFs from acquired observation support and reuses their monomial multiples to interpret unseen intentions. Warm certificates are exact algebraic identities, with cold refinement as the reference and explicit UNKNOWN for unresolved rewrites. Run `python procedural_vocabulary_demo.py`.
+
 ## NCR-014 — Intent-neutral observation memory
 
 [NCR-014](docs/NCR-014.md) retains VGI-finalized observations across new Boolean intentions and seals exact evidence bytes using the native E-CPU recovery lineage. A recovered receiver can reuse known bits and independently qualify new targets while preserving original source addresses. The cross-repository integration exercises actual OS-process exit and quorum recovery.
