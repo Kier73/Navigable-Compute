@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-012 — Structural attention on persistent solution Grounds
+
+[NCR-012](docs/NCR-012.md) checks every outcome of bounded offered observation packets and chooses by exact task fallback, retained overlay nodes and future address-embedding work under a declared uniform hidden-member prior. State-pair information and task distinction are separate diagnostics; all preparation and independent verification are paid. Run `python fibre_attention_demo.py`.
+
 ## NCR-011 — Adaptive coordinate formation and persistent refinement
 
 [NCR-011](docs/NCR-011.md) uses primal-incidence frontier proposals to select a bounded independently checked NCR-010 ordering, then intersects additional observations through a persistent residual overlay. Old subtree counts are reused and refined addresses map monotonically back to the original coordinate space. Run `python adaptive_fibre_demo.py`.
