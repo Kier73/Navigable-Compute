@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-023 — Recursive coalescent fleet
+
+[NCR-023](docs/NCR-023.md) admits content-addressed causal proof dependencies, reconstructs qualified native vocabulary and exercises 32-leaf multi-generation fleets. Dedicated five-minute hosted stress campaign measures sustained independent rounds. Run `python recursive_fleet_demo.py`.
+
 ## NCR-022 — Coalescent intelligence fleet
 
 [NCR-022](docs/NCR-022.md) merges independently verified base-referenced algebraic discoveries across independent processes and separately scheduled hosted artifact paths. Different proof variants retain provenance while deterministic semantic union enables new collective intentions. Run `python coalescent_fleet_demo.py`.
