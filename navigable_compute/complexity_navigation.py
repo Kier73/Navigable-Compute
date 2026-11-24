@@ -120,7 +120,8 @@ class Portfolio:
         self.family = family
         self.prefix = _prefix(family, word, repetitions)
         self.word, self.repetitions = word, repetitions
-        self.ground = self.image = None
+        self.ground = self.image = self.stationary_image = None
+        stationary_ns = 0
         self.failures = {}
         self.failed_setup_ns = 0
         self.candidates = {}
@@ -165,8 +166,26 @@ class Portfolio:
                 self.failures["packed"] = str(exc)
                 self.failed_setup_ns += perf_counter_ns()-start
                 self.image = None
+        # After the causal drain, every future action is identity. The
+        # terminal output is now a sufficient *continuation* coordinate.
+        if (len(self.prefix) == family.description.drain_horizon
+                and "terminal" in self.candidates):
+            t = self.candidates["terminal"]
+            start = perf_counter_ns()
+            try:
+                self.stationary_image = construct_image(t.polys, family.description.width)
+                if not verify_image(t.polys, family.description.width, self.stationary_image):
+                    raise ValueError("unqualified stationary image")
+                stationary_ns = perf_counter_ns()-start
+                self.candidates["stationary"] = Candidate(
+                    "stationary", t.read_mask, self.stationary_image.bits,
+                    t.setup_ns+stationary_ns, t.polys)
+            except ImageBudget as exc:
+                self.failures["stationary"] = str(exc)
+                self.failed_setup_ns += perf_counter_ns()-start
+                self.stationary_image = None
         self.preparation_ns = (
-            self.source_qualification_ns + self.failed_setup_ns +
+            self.source_qualification_ns + self.failed_setup_ns + stationary_ns +
             max((c.setup_ns for c in self.candidates.values()
                  if c.mode in ("feature", "packed")), default=0) +
             self.candidates.get("terminal", Candidate("terminal", 0, 0, 0)).setup_ns)
@@ -194,8 +213,9 @@ class Portfolio:
                 for a in self.prefix:
                     z = self.family.operators[a].apply(z)
             observation = self.family.project_observer(z)
-        elif mode == "terminal":
-            z = observation = eval_observers(candidate.polys, initial)
+        elif mode in ("terminal", "stationary"):
+            observation = eval_observers(candidate.polys, initial)
+            z = pack(self.stationary_image, observation) if mode == "stationary" else observation
         else:
             g = self.ground
             z = g.project(initial)
@@ -208,6 +228,8 @@ class Portfolio:
         expected = self._reference(state)
         if observation != _independent_eval(self.family.description.observers, expected):
             raise ValueError("independent observer check failed")
+        if mode == "stationary" and unpack(self.stationary_image, z) != observation:
+            raise ValueError("stationary coordinate check failed")
         if mode == "source" and z != expected:
             raise ValueError("source state check failed")
         if mode in ("feature", "packed"):
@@ -226,6 +248,8 @@ class Portfolio:
             self._validate_state(coordinate)
             z = self.family.operators[action].apply(coordinate)
             return self.family.project_observer(z), z
+        if mode == "stationary":
+            return unpack(self.stationary_image, coordinate), coordinate
         g = self.ground
         if mode == "packed":
             coordinate = unpack(self.image, coordinate)
