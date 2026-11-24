@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-020 — Reflective cost-aware routing
+
+[NCR-020](docs/NCR-020.md) observes paired verified schedule alternatives, learns context-specific empirical route costs, restores advisory statistics and compares frozen policy on matched and shifted intentions. The dedicated CI imports actual IFS operation-span instrumentation. Run `python reflective_routing_demo.py`.
+
 ## NCR-019 — Intention-formed heterogeneous proof routes
 
 [NCR-019](docs/NCR-019.md) connects direct cofactors, joint equation-span certificates, algebraic rewriting, source-address witnesses and exact residual construction under typed Truth/Cube intentions. Each semantic result has an independent proof checker. Run `python intention_interpreter_demo.py`.

@@ -1,0 +1,25 @@
+name: NCR-020 reflective routing and IFS operation spans
+on: [push, pull_request]
+jobs:
+  measured-routing:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Kier73/In-Formation-Space
+          ref: ccf7dfb88a52c458ee9dd00e26ffbaecf5b2af9c
+          path: .ifs-source
+          sparse-checkout: bridges/observation-path
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -c "import sys,runpy; sys.path.insert(0,'.ifs-source/bridges/observation-path'); runpy.run_path('integration/reflective_routing_spans.py',run_name='__main__')"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: routing-spans-${{ matrix.os }}
+          path: route-observation-artifacts/
