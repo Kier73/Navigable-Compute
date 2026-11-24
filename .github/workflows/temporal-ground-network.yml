@@ -1,0 +1,31 @@
+name: Temporal Ground network
+on:
+  pull_request:
+    paths:
+      - 'navigable_compute/ground_network*.py'
+      - 'tests/test_ground_network.py'
+      - 'ground_network_demo.py'
+      - '.github/workflows/temporal-ground-network.yml'
+  push:
+    paths:
+      - 'navigable_compute/ground_network*.py'
+      - 'tests/test_ground_network.py'
+      - 'ground_network_demo.py'
+      - '.github/workflows/temporal-ground-network.yml'
+permissions:
+  contents: read
+jobs:
+  network:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.10', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s tests -p test_ground_network.py -v
+      - run: python ground_network_demo.py
