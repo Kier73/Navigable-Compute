@@ -125,7 +125,8 @@ class Portfolio:
         self.failed_setup_ns = 0
         self.candidates = {}
         full = (1 << family.description.width)-1
-        self.candidates["source"] = Candidate("source", full,
+        self.candidates["source"] = Candidate("source",
+                                               _protected(family) if len(self.prefix) == family.description.drain_horizon else full,
                                                family.description.width, 0)
         start = perf_counter_ns()
         try:
@@ -150,6 +151,8 @@ class Portfolio:
             g = self.ground
             feature_ns = perf_counter_ns()-start
             mask = _support(g.basis)
+            if len(self.prefix) == family.description.drain_horizon:
+                mask &= _protected(family)
             self.candidates["feature"] = Candidate("feature", mask, g.dimension, feature_ns)
             start = perf_counter_ns()
             try:
@@ -196,8 +199,9 @@ class Portfolio:
         else:
             g = self.ground
             z = g.project(initial)
-            for a in self.prefix:
-                z = _linear(g.operator_rows[a], z)
+            if len(self.prefix) != self.family.description.drain_horizon:
+                for a in self.prefix:
+                    z = _linear(g.operator_rows[a], z)
             observation = g.read(z)
             if mode == "packed":
                 z = pack(self.image, z)
