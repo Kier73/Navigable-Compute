@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-018 — Intention-shaped factored proofs
+
+[NCR-018](docs/NCR-018.md) applies the admitted NCR-017 motif to signed-cube intentions by checking a single source cofactor directly, without constructing its full transversal catalogue or expanding the cube into ANF. Run `python intention_cofactor_demo.py`.
+
 ## NCR-017 — Induced proof-producing operations
 
 [NCR-017](docs/NCR-017.md) recognizes a transferable algebraic motif in earlier verified proof traces, then constructs new minimal-transversal rules from an unseen admitted source. Each new rule is independently checked by the existing Boolean certificate verifier. Run `python induced_transversal_demo.py`.
