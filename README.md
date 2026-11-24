@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-017 — Induced proof-producing operations
+
+[NCR-017](docs/NCR-017.md) recognizes a transferable algebraic motif in earlier verified proof traces, then constructs new minimal-transversal rules from an unseen admitted source. Each new rule is independently checked by the existing Boolean certificate verifier. Run `python induced_transversal_demo.py`.
+
 ## NCR-016 — Symbolic induction
 
 [NCR-016](docs/NCR-016.md) discovers additional vanishing rules by independently checked Boolean product identities instead of cold target formation. It skips already resolved proposals and compares the resulting vocabulary with NCR-015. Run `python symbolic_induction_demo.py`.
