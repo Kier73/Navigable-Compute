@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-019 — Intention-formed heterogeneous proof routes
+
+[NCR-019](docs/NCR-019.md) connects direct cofactors, joint equation-span certificates, algebraic rewriting, source-address witnesses and exact residual construction under typed Truth/Cube intentions. Each semantic result has an independent proof checker. Run `python intention_interpreter_demo.py`.
+
 ## NCR-018 — Intention-shaped factored proofs
 
 [NCR-018](docs/NCR-018.md) applies the admitted NCR-017 motif to signed-cube intentions by checking a single source cofactor directly, without constructing its full transversal catalogue or expanding the cube into ANF. Run `python intention_cofactor_demo.py`.
