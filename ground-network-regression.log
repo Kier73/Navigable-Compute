@@ -1,0 +1,12 @@
+test_bounded_cost_optimality_and_cycles (test_ground_network.GroundNetworkTests.test_bounded_cost_optimality_and_cycles) ... ok
+test_costed_paths_and_scope (test_ground_network.GroundNetworkTests.test_costed_paths_and_scope) ... ok
+test_large_sparse_crt (test_ground_network.GroundNetworkTests.test_large_sparse_crt) ... ok
+test_random_compatible_suffix_and_composition (test_ground_network.GroundNetworkTests.test_random_compatible_suffix_and_composition) ... ok
+test_random_rank_and_edge_oracle (test_ground_network.GroundNetworkTests.test_random_rank_and_edge_oracle) ... ok
+test_reverse_time_suffix_and_finite_events (test_ground_network.GroundNetworkTests.test_reverse_time_suffix_and_finite_events) ... ok
+test_schema_and_budget (test_ground_network.GroundNetworkTests.test_schema_and_budget) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.589s
+
+OK
