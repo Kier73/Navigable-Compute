@@ -176,11 +176,12 @@ class Interpreter:
         self.v=vocabulary
         self.skill=skill
 
-    def realize(self,q,*,limits=Limits()):
+    def realize(self,q,*,limits=Limits(),strategy="baseline"):
         from .intention_interpreter_verify import verify_result
         v=self.v
         validate_request(v,q)
         _limits(limits)
+        order=route_order(q,strategy)
         attempts=[]
 
         def attempt(name,call):
@@ -201,52 +202,73 @@ class Interpreter:
             return result
 
         bounds=dict(max_nodes=limits.residual_nodes,max_work=limits.residual_work)
-        if type(q) is Cube:
-            proof=attempt("cofactor",lambda:prove_cube(self.skill,v,q.ones,q.zeros,
-                                                     max_work=limits.cofactor_work))
-            if proof is not None:
-                return finish("EXCLUDED","cofactor",proof)
-            proof=attempt("cofactor-span",lambda:combine_cofactors(v,q,max_work=limits.span_work))
-            if proof is not None:
-                return finish("EXCLUDED","cofactor-span",proof)
-
-            def sample_cube():
-                for j,x in _sample(v,limits.witness_samples):
-                    if x&q.ones==q.ones and not x&q.zeros:
-                        return Witness(((j,x),))
-                return None
-
-            proof=attempt("address-witness",sample_cube)
-            if proof is not None:
-                return finish("POSSIBLE","address-witness",proof)
-            rows=v.observations+observation_rows(v.parent.width,q.ones|q.zeros,q.ones)
-            proof=attempt("residual",lambda:refine(v.parent,rows,**bounds))
-            if proof is not None:
-                return finish("POSSIBLE" if proof.count else "EXCLUDED","residual",proof)
-        else:
-            reduction=attempt("rewrite",lambda:v.reduce(q.target,max_steps=limits.rewrite_steps,
-                                                        max_work=limits.rewrite_work))
-            if reduction is not None and reduction.value is not None:
-                return finish("ONE" if reduction.value else "ZERO","rewrite",reduction)
-
-            def sample_truth():
-                by_bit={}
-                for j,x in _sample(v,limits.witness_samples):
-                    by_bit.setdefault(_eval(q.target,x),(j,x))
-                    if len(by_bit)==2:
-                        return Witness((by_bit[0],by_bit[1]))
-                return None
-
-            proof=attempt("address-witness",sample_truth)
-            if proof is not None:
-                return finish("MIXED","address-witness",proof)
-            if reduction is not None and len(reduction.residual)<len(q.target):
-                proof=attempt("rewrite+residual",lambda:v.exact(reduction.residual,**bounds)[1])
+        reduction=None
+        for stage in order:
+            if stage=="cofactor":
+                proof=attempt(stage,lambda:prove_cube(self.skill,v,q.ones,q.zeros,
+                                                      max_work=limits.cofactor_work))
                 if proof is not None:
-                    return finish(_status(proof.count,v.overlay.count),"rewrite+residual",
-                                  RewriteExact(reduction,proof))
-            else:
-                proof=attempt("residual",lambda:v.exact(q.target,**bounds)[1])
+                    return finish("EXCLUDED",stage,proof)
+            elif stage=="cofactor-span":
+                proof=attempt(stage,lambda:combine_cofactors(v,q,max_work=limits.span_work))
                 if proof is not None:
-                    return finish(_status(proof.count,v.overlay.count),"residual",proof)
+                    return finish("EXCLUDED",stage,proof)
+            elif stage=="rewrite":
+                reduction=attempt(stage,lambda:v.reduce(q.target,max_steps=limits.rewrite_steps,
+                                                          max_work=limits.rewrite_work))
+                if reduction is not None and reduction.value is not None:
+                    return finish("ONE" if reduction.value else "ZERO",stage,reduction)
+            elif stage=="address-witness":
+                def sample():
+                    if type(q) is Cube:
+                        for j,x in _sample(v,limits.witness_samples):
+                            if x&q.ones==q.ones and not x&q.zeros:
+                                return Witness(((j,x),))
+                    else:
+                        by_bit={}
+                        for j,x in _sample(v,limits.witness_samples):
+                            by_bit.setdefault(_eval(q.target,x),(j,x))
+                            if len(by_bit)==2:
+                                return Witness((by_bit[0],by_bit[1]))
+                    return None
+                proof=attempt(stage,sample)
+                if proof is not None:
+                    return finish("POSSIBLE" if type(q) is Cube else "MIXED",stage,proof)
+            elif stage=="residual":
+                if type(q) is Cube:
+                    rows=v.observations+observation_rows(v.parent.width,q.ones|q.zeros,q.ones)
+                    proof=attempt(stage,lambda:refine(v.parent,rows,**bounds))
+                    if proof is not None:
+                        return finish("POSSIBLE" if proof.count else "EXCLUDED",stage,proof)
+                elif reduction is not None and len(reduction.residual)<len(q.target):
+                    proof=attempt("rewrite+residual",lambda:v.exact(reduction.residual,**bounds)[1])
+                    if proof is not None:
+                        return finish(_status(proof.count,v.overlay.count),"rewrite+residual",
+                                      RewriteExact(reduction,proof))
+                else:
+                    proof=attempt(stage,lambda:v.exact(q.target,**bounds)[1])
+                    if proof is not None:
+                        return finish(_status(proof.count,v.overlay.count),stage,proof)
         return finish("UNKNOWN","none",None)
+
+
+def route_order(q,strategy):
+    """Finite supplied schedule catalogue; every schedule preserves proof checks."""
+    if type(q) is Cube:
+        orders={
+            "baseline":("cofactor","cofactor-span","address-witness","residual"),
+            "witness-first":("address-witness","cofactor","cofactor-span","residual"),
+            "span-first":("cofactor-span","cofactor","address-witness","residual"),
+            "exact-first":("residual","cofactor","cofactor-span","address-witness"),
+        }
+    elif type(q) is Truth:
+        orders={
+            "baseline":("rewrite","address-witness","residual"),
+            "witness-first":("address-witness","rewrite","residual"),
+            "exact-first":("residual","rewrite","address-witness"),
+        }
+    else:
+        raise ValueError("unknown intention type")
+    if type(strategy) is not str or strategy not in orders:
+        raise ValueError("unsupported route strategy")
+    return orders[strategy]
