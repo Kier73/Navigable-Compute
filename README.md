@@ -1,5 +1,9 @@
 # Navigable-Compute
 
+## NCR-010 — Addressable inverse temporal intentions
+
+[NCR-010](docs/NCR-010.md) compiles multiple masked observations at specified logical horizons into an exact counted residual DAG. Its rank/unrank operations directly address every satisfying initial state without enumerating the full source cube; an independent checker audits all residual edges and counts. A connected 128-bit nonlinear path and the native NCR-007 temporal fixture distinguish compact formation from exponential worst cases. Run `python intention_fibre_demo.py`.
+
 ## NCR-007 — Invariant-generated nonlinear observer processors
 
 [NCR-007](docs/NCR-007.md) constructs exact nonlinear Boolean laws from ranked causal topology, conservation, symmetry and polynomial degree. It closes the requested observer functions under exact Koopman pullbacks, generating a coordinate `q(x)` and source-action matrices with `q(T_a(x)) = M_a q(x)`. Source and feature identity are checked with independent exact polynomial implementations, including small-source future-observation equivalence, genuine quadratic witnesses, tampering controls and feature-budget refusals. The reproducible fixture runs with `python nonlinear_koopman_demo.py`.
