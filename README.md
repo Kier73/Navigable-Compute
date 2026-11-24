@@ -311,3 +311,7 @@ python invariant_demo.py
 Read [the construction and proof contract](docs/NCI-001.md). This lane has
 its own independent semantic checker and strict mathematical-receipt wire
 profile, and leaves authority and real-world effect execution with E-CPU/VGI.
+
+## Temporal Ground networks
+
+The [native temporal Ground network](docs/TEMPORAL_GROUND_NETWORK.md) represents exact ultimately-periodic observation languages, independently qualifies signed temporal suffix relationships and rank offsets, and searches costed routes to retained mathematical knowledge. A qualified path can itself be retained as a derived edge without reconstructing endpoint ranks or comparing endpoint diagrams. Run `python ground_network_demo.py` and `python -m unittest discover -s tests -p test_ground_network.py -v`. The same mathematical kernel is exercised by IFS CIG-034A with actual source-qualified Seeds; source provenance and physical authority remain adapter responsibilities.
