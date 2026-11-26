@@ -1,0 +1,18 @@
+name: NCR-023 five minute recursive fleet
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  recursive-fleet-stress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python recursive_fleet_demo.py --seconds 300 --leaves 32 --workers 8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: recursive-fleet-five-minute-report
+          path: recursive-fleet-report.json
